@@ -1,68 +1,33 @@
+A simple app demoing React Suspense in Concurrent Mode with a custom build of
+React. Supporting work on React as part of the MLH Fellowship.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Usage
 
-In the project directory, you can run:
+To increase your dev velocity, I'll recommend these steps below to set up
+both this project and React.
 
-### `yarn start`
+1. Clone both this repo and React's repo.
+1. In both folders, run `yarn` to install dependencies.
+1. In the react folder, run `yarn build react-dom/index,react/index,react-cache,scheduler --type=NODE_DEV`. The
+   resulting files will be in build/node_modules.
+1. `cd` back to this project (or `cd` in in another terminal window/tab/pane)
+1. Run `npx nodemon -w ../react/build/node_modules -x 'npx cross-env SKIP_PREFLIGHT_CHECK=true BROWSER=none yarn start`. This will watch React's
+   build folder for changes, copy its built code over and restart the app.
+1. `cd` back to the react folder (or go back to the other window/tab/pane),
+   and run `yarn build react-dom/index,react/index,react-cache,scheduler --type=NODE_DEV --watch`. This will watch the React code for changes and
+   compile any changes quickly. You must do this after the previous step, as
+   the previous step copies necessary files that React's build watch script
+   will nuke.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+If you've done the above steps correctly, you should be able to trigger a
+recompile in this app when a file in the React codebase is changed. You'll
+still need to refresh your browser tab though, since WDS will be stopped and
+restarted.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+To enable React's experimental debug tracing logger: in the react folder, set
+the `enableDebugTracing` flag to true in
+`packages/shared/ReactFeatureFlags.js`. This will only work in dev mode (it
+won't work if you use the result of this project's `yarn build` in this
+project).

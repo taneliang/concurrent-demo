@@ -3,11 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "experimental",
-    "react-dom": "experimental",
     "react-scripts": "3.4.1"
   },
   "scripts": {
+    "prestart": "cp -ur ../react/build/node_modules/* ./node_modules/",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "eject": "react-scripts eject"
