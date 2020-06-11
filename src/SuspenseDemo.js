@@ -4,15 +4,14 @@ import React, {
   useCallback,
   useState,
 } from "react";
-import { wrapPromise } from "./wrapPromise";
+import { unstable_createResource } from "react-cache";
 
-function createResource() {
-  return wrapPromise(
-    new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(Math.random());
-      }, Math.random() * 2000);
-    })
+function createRandomNumberResource() {
+  return unstable_createResource(
+    () =>
+      new Promise((resolve) =>
+        setTimeout(() => resolve(Math.random()), Math.random() * 2000)
+      )
   );
 }
 
@@ -28,13 +27,15 @@ function SuspenseFallback() {
   return <div>SUSPENDED</div>;
 }
 
-const initialResources = [...Array(5).keys()].map(() => createResource());
+const initialResources = [...Array(5).keys()].map(() =>
+  createRandomNumberResource()
+);
 
 export function SuspenseDemo() {
   const [resources, setResources] = useState(initialResources);
 
   const addResource = useCallback(() => {
-    setResources([...resources, createResource()]);
+    setResources([...resources, createRandomNumberResource()]);
   }, [resources, setResources]);
 
   return (
