@@ -1,47 +1,12 @@
-import React, {
-  Suspense,
-  useCallback,
-  useState,
-  unstable_useTransition,
-} from "react";
+import React from "react";
+import { UseTransitionDemo } from "./UseTransitionDemo";
+import { SuspenseDemo } from "./SuspenseDemo";
 
-function CounterButton() {
-  const [count, setCount] = useState(0);
-  const [startTransition, isPending] = unstable_useTransition({
-    timeoutMs: 1000,
-  });
-
-  // TODO: Figure out why this doesn't suspend :(
-
-  const handleClick = useCallback(() => {
-    startTransition(() => {
-      setTimeout(() => {
-        setCount(count + 1);
-      }, 2000);
-    });
-  }, [count, setCount, startTransition]);
-
-  return (
-    <button style={{ display: "block" }} onClick={handleClick}>
-      Button {count} {isPending}
-    </button>
-  );
-}
-
-function SuspenseDemo() {
+export function App() {
   return (
     <>
-      <Suspense fallback="SUSPENDED">
-        {[...Array(5).keys()].map((idx) => (
-          <CounterButton key={idx} />
-        ))}
-      </Suspense>
+      <UseTransitionDemo />
+      <SuspenseDemo />
     </>
   );
 }
-
-function App() {
-  return <SuspenseDemo />;
-}
-
-export default App;
