@@ -9,9 +9,13 @@ import { unstable_createResource } from "react-cache";
 function createRandomNumberResource() {
   return unstable_createResource(
     () =>
-      new Promise((resolve) =>
-        setTimeout(() => resolve(Math.random()), Math.random() * 2000)
-      )
+      new Promise((resolve) => {
+        console.log("RESOURCE promise: starting");
+        setTimeout(() => {
+          console.log("RESOURCE promise: resolving");
+          resolve(Math.random());
+        }, Math.random() * 2000);
+      })
   );
 }
 

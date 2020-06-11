@@ -13,7 +13,7 @@ both this project and React.
 1. In the react folder, run `yarn build react-dom/index,react/index,react-cache,scheduler --type=NODE_DEV`. The
    resulting files will be in build/node_modules.
 1. `cd` back to this project (or `cd` in in another terminal window/tab/pane)
-1. Run `npx nodemon -w ../react/build/node_modules -x 'npx cross-env SKIP_PREFLIGHT_CHECK=true BROWSER=none yarn start`. This will watch React's
+1. Run `npx nodemon -w ../react/build/node_modules -x 'npx cross-env SKIP_PREFLIGHT_CHECK=true BROWSER=none yarn start'`. This will watch React's
    build folder for changes, copy its built code over and restart the app.
 1. `cd` back to the react folder (or go back to the other window/tab/pane),
    and run `yarn build react-dom/index,react/index,react-cache,scheduler --type=NODE_DEV --watch`. This will watch the React code for changes and
