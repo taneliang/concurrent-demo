@@ -1,7 +1,15 @@
+# React Concurrent Mode and Suspense Demo
+
+<https://concurrent-demo.elg.now.sh/>
+
 A simple app demoing React Suspense in Concurrent Mode with a custom build of
 React. Supporting work on React as part of the MLH Fellowship.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![app screenshot](resources/screenshot.png)
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app),
+but ejected so that we can bundle React in development mode and disable
+minifying.
 
 ## Usage
 
@@ -28,6 +36,12 @@ restarted.
 
 To enable React's experimental debug tracing logger: in the react folder, set
 the `enableDebugTracing` flag to true in
-`packages/shared/ReactFeatureFlags.js`. This will only work in dev mode (it
-won't work if you use the result of this project's `yarn build` in this
-project).
+`packages/shared/ReactFeatureFlags.js`.
+
+## Deployment
+
+Example build script for a static hosting service (e.g. vercel.com):
+
+```sh
+git clone https://github.com/facebook/react.git ../react && cd ../react && yarn && yarn build react-dom/index,react/index,react-cache,scheduler --type=NODE_DEV && cd - && yarn build
+```
