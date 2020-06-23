@@ -3,7 +3,13 @@ import React from "react";
 export class ForceUpdateDemo extends React.PureComponent {
   state = {
     count: 0,
+    didMount: false,
   };
+
+  componentDidMount() {
+    // A cascading class component state update
+    this.setState({ didMount: true });
+  }
 
   makeForceUpdateTrigger = (shouldSetState, shouldForceUpdate) => () => {
     if (shouldSetState) {
