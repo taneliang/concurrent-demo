@@ -3,7 +3,8 @@
 <https://concurrent-demo.elg.now.sh/>
 
 A simple app demoing React Suspense in Concurrent Mode with a custom build of
-React. Supporting work on React as part of the MLH Fellowship.
+React with SchedulingProfiling and DebugTracing enabled. Supporting work on
+React as part of the MLH Fellowship.
 
 ![app screenshot](resources/screenshot.png)
 
@@ -40,8 +41,9 @@ the `enableDebugTracing` flag to true in
 
 ## Deployment
 
-Example build script for a static hosting service (e.g. vercel.com):
-
-```sh
-git clone https://github.com/facebook/react.git ../react && cd ../react && yarn && yarn build react-dom/index,react/index,react-cache,scheduler --type=NODE_DEV && cd - && yarn build
-```
+- `yarn build`: builds this app. `yarn prebuild` (automatically run on
+  `yarn build`) will expect and copy your built version of React from
+  ../react.
+- `yarn build-for-deployment` will clone our custom fork of React, configure
+  React (i.e. flip relevant feature flags) and then run `yarn build`.
+  Suitable for use with static hosting services (e.g. vercel.com).
