@@ -7,7 +7,7 @@
     "prebuild": "cp -r ../react/build/node_modules/* ./node_modules/",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js --profile",
-    "build-with-react": "git clone https://github.com/MLH-Fellowship/react.git ../react && cd ../react && git checkout eliang/scheduling-profiler-marks && yarn && sed -i 's/\\(enableDebugTracing\\|enableSchedulingProfiler\\) = false/\\1 = true/g' packages/shared/ReactFeatureFlags.js && cat packages/shared/ReactFeatureFlags.js && yarn build react-dom/index,react/index,react-cache,scheduler --type=NODE_DEV && cd - && yarn build"
+    "build-with-react": "git clone https://github.com/facebook/react.git ../react && cd ../react && yarn && sed -i 's/\\(enableDebugTracing\\|enableSchedulingProfiler\\) = false/\\1 = true/g' packages/shared/ReactFeatureFlags.js && cat packages/shared/ReactFeatureFlags.js && yarn build react-dom/index,react/index,react-cache,scheduler --type=NODE_DEV && cd - && yarn build"
   },
   "dependencies": {
     "@babel/core": "7.9.0",
