@@ -1,5 +1,11 @@
 import React from "react";
 
+function DoubleCascader() {
+  const [didMount, setDidMount] = React.useState(false);
+  React.useLayoutEffect(() => setDidMount(true), [setDidMount]);
+  return <div>DoubleCascader did mount: {didMount}</div>;
+}
+
 export class ForceUpdateDemo extends React.PureComponent {
   state = {
     count: 0,
@@ -26,8 +32,9 @@ export class ForceUpdateDemo extends React.PureComponent {
         <h1>Force Update Demo</h1>
         <p>
           A class component that calls forceUpdate. The only way to force a
-          component to update.
+          component to update. Also creates 2 nested cascading updates.
         </p>
+        <DoubleCascader />
         <pre>this.state = {JSON.stringify(this.state)}</pre>
         <button onClick={this.makeForceUpdateTrigger(true, false)}>
           setState only
