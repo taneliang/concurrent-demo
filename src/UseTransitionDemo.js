@@ -1,8 +1,4 @@
-import React, {
-  useCallback,
-  useState,
-  unstable_useTransition as useTransition,
-} from "react";
+import React, { useCallback, useState, useTransition } from "react";
 
 function CounterButton() {
   const [count, setCount] = useState(0);
