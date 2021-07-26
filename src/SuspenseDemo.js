@@ -1,9 +1,4 @@
-import React, {
-  Suspense,
-  unstable_SuspenseList as SuspenseList,
-  useCallback,
-  useState,
-} from "react";
+import React, { Suspense, SuspenseList, useCallback, useState } from "react";
 import { unstable_createResource } from "react-cache";
 
 function createRandomNumberResource() {
