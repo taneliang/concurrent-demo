@@ -2,9 +2,10 @@
 
 <https://concurrent-demo.elg.now.sh/>
 
-A simple app demoing React Suspense in Concurrent Mode with a custom build of
-React with SchedulingProfiling and DebugTracing enabled. Supporting work on
-React as part of the MLH Fellowship.
+A simple app demoing React Suspense and Concurrent Mode with a custom build of
+the latest version of React (at build time), with scheduling profiler marks
+enabled. Supporting work on the React scheduling profiler, previously as part of
+the MLH Fellowship.
 
 ![app screenshot](resources/screenshot.png)
 
@@ -19,13 +20,13 @@ both this project and React.
 
 1. Clone both this repo and React's repo.
 1. In both folders, run `yarn` to install dependencies.
-1. In the react folder, run `yarn build react-dom/index,react/index,react-cache,scheduler --type=NODE_DEV`. The
+1. In the react folder, run `yarn build react-dom/index,react/index,react-cache,scheduler --type=NODE_DEV,NODE_PROFILING`. The
    resulting files will be in build/node_modules.
 1. `cd` back to this project (or `cd` in in another terminal window/tab/pane)
 1. Run `npx nodemon -w ../react/build/node_modules -x 'npx cross-env SKIP_PREFLIGHT_CHECK=true BROWSER=none yarn start'`. This will watch React's
    build folder for changes, copy its built code over and restart the app.
 1. `cd` back to the react folder (or go back to the other window/tab/pane),
-   and run `yarn build react-dom/index,react/index,react-cache,scheduler --type=NODE_DEV --watch`. This will watch the React code for changes and
+   and run `yarn build react-dom/index,react/index,react-cache,scheduler --type=NODE_DEV,NODE_PROFILING --watch`. This will watch the React code for changes and
    compile any changes quickly. You must do this after the previous step, as
    the previous step copies necessary files that React's build watch script
    will nuke.
