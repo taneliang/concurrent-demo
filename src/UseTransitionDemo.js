@@ -2,9 +2,7 @@ import React, { useCallback, useState, useTransition } from "react";
 
 function CounterButton() {
   const [count, setCount] = useState(0);
-  const [startTransition, isPending] = useTransition({
-    timeoutMs: 1000,
-  });
+  const [isPending, startTransition] = useTransition();
 
   const handleClick = useCallback(() => {
     startTransition(() => {
